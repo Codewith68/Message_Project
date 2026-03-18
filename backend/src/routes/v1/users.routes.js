@@ -1,12 +1,11 @@
 import {Router} from 'express';
-import { StatusCodes } from 'http-status-codes';
+
+import { signUp } from '../../controllers/user.controller.js';
+import { userSignUpSchema } from '../../validators/userSchema.validator.js';
+import { validate } from '../../validators/zod.validator.js';
 
 const UserRouter=Router();
 
-UserRouter.get('/',(req,res)=>{
-    return  res.status(StatusCodes.OK).json({
-        message:"Hello Users"
-    })
-})
+UserRouter.post("/signup",validate(userSignUpSchema),signUp)
 
 export default UserRouter;
