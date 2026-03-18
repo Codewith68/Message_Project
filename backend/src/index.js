@@ -2,10 +2,9 @@ import express from 'express';
 import { StatusCodes } from 'http-status-codes';
 import morgan from'morgan';
 
-import { PORT } from './config/server.config.js';
 import { connectDB } from './config/db.config.js';
-
-
+import { PORT } from './config/server.config.js';
+import router from './routes/api.Routes.js';
 
 
 const app = express();
@@ -26,7 +25,7 @@ app.get("/home",(req,res)=>{
   })
 })
 
-
+app.use('/api',router)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
