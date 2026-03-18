@@ -20,6 +20,11 @@ app.get('/', (req, res) => {
     message: 'Hello World'
   });
 });
+app.get("/home",(req,res)=>{
+  return res.status(StatusCodes.OK).json({
+    message:"Hello Home"
+  })
+})
 
 
 
