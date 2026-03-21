@@ -1,10 +1,23 @@
-import {Router} from 'express';
+import express from 'express';
 
-import UserRouter from './users.routes.js';
+import channelRouter from './channel.js';
+import memberRouter from './members.js';
+import messageRouter from './messages.js';
+import paymentRouter from './payment.js';
+import userRouter from './users.js';
 import workspaceRouter from './workspaces.js';
-const V1router=Router();
+const router = express.Router();
 
+router.use('/users', userRouter);
 
-V1router.use('/users',UserRouter)
-V1router.use('/workspaces', workspaceRouter);
-export default V1router;
+router.use('/workspaces', workspaceRouter);
+
+router.use('/channels', channelRouter);
+
+router.use('/members', memberRouter);
+
+router.use('/messages', messageRouter);
+
+router.use('/payments', paymentRouter);
+
+export default router;
