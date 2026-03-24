@@ -1,1 +1,0 @@
-Atomic design parten :![Link](https://medium.com/@janelle.wg/atomic-design-pattern-how-to-structure-your-react-application-2bb4d9ca5f97)
