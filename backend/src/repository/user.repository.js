@@ -1,17 +1,29 @@
-import User from '../models/users.model.js';
+import User from '../models/user.js';
 import crudRepository from './crud.repository.js';
 
+const userRepository = {
+  ...crudRepository(User),
 
-const userRepository={
-    ...crudRepository(User),
+  signUpUser: async function (data) {
+    const newUser = new User(data);
+    await newUser.save();
+    return newUser;
+  },
 
-    getUserByEmail: async function(email) {
-        return await User.findOne({email});
-    },
-    getUserByUserName: async function(userName) {
-        return await User.findOne({userName}).select('-password'); //password exclude from response
-    },
+  getByEmail: async function (email) {
+    const user = await User.findOne({ email });
+    return user;
+  },
 
-}
+  getByUsername: async function (username) {
+    const user = await User.findOne({ username }).select('-password'); // exclude password
+    return user;
+  },
+
+  getByToken: async function (token) {
+    const user = await User.findOne({ verificationToken: token });
+    return user;
+  }
+};
 
 export default userRepository;
